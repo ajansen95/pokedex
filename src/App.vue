@@ -1,5 +1,5 @@
 <template>
-  <main class="h-screen text-white">
+  <main class="border border-black">
     <AppBar />
     <RouterView />
   </main>
