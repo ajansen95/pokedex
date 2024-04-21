@@ -1,8 +1,8 @@
 <template>
-  <main class="border border-black">
+  <div class="border border-black">
     <AppBar />
     <RouterView />
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
