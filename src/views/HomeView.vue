@@ -1,6 +1,6 @@
 <template>
   <main class="bg-black bg-opacity-10">
-    <section id="whiteSection" class="px-default pb-default2 rounded-b-2xl bg-white">
+    <section id="categories" class="px-default pb-default2 rounded-b-2xl bg-white">
       <h1 class="text-3xl font-bold">What Pokemon<br />are you looking for?</h1>
       <SearchBar class="mt-10" />
       <div class="mt-10 grid grid-cols-2 gap-2">
@@ -12,11 +12,20 @@
         />
       </div>
     </section>
-    <section id="graySection" class="px-default h-64">
+    <section id="news" class="px-default">
       <header class="mt-7 flex items-baseline justify-between">
         <h2 class="text-2xl font-bold">Pokémon News</h2>
         <button class="text-sm font-bold text-blue-500">View All</button>
       </header>
+      <div class="divide flex flex-col divide-y divide-black divide-opacity-10">
+        <NewsPreview
+          v-for="news in pokemonNews"
+          :key="news.title"
+          :title="news.title"
+          :date="news.date"
+          :imgUrl="news.imgUrl"
+        />
+      </div>
     </section>
   </main>
 </template>
@@ -24,6 +33,7 @@
 <script setup lang="ts">
 import SearchBar from '@/components/SearchBar.vue'
 import CategoryCard from '@/components/CategoryCard.vue'
+import NewsPreview from '@/components/NewsPreview.vue'
 
 interface Category {
   title: string
@@ -54,6 +64,25 @@ const categories: Category[] = [
   {
     title: 'Type Charts',
     color: 'bg-amber-800'
+  }
+]
+
+interface PokemonNews {
+  title: string
+  date: Date
+  imgUrl: string
+}
+
+const pokemonNews: PokemonNews[] = [
+  {
+    title: 'Pokémon Rumble Rush Arrives Soon',
+    date: new Date('May 15, 2019 03:24:00'),
+    imgUrl: 'https://www2.tuhh.de/zll/wp-content/uploads/placeholder.png'
+  },
+  {
+    title: 'Detective Pikachu Sleuths joins Pokémon GO',
+    date: new Date(),
+    imgUrl: 'https://www2.tuhh.de/zll/wp-content/uploads/placeholder.png'
   }
 ]
 </script>
