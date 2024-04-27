@@ -9,11 +9,11 @@
       color-code4="#000000"
       color-code5="#00000000"
     />
-    <button class="h-4 w-4">
-      <ArrowIcon />
+    <button class="rounded-full" @click="() => router.back()">
+      <ArrowIcon class="h-4 w-4" />
     </button>
-    <button class="h-4 w-4">
-      <BurgerIcon />
+    <button class="rounded-full">
+      <BurgerIcon class="h-4 w-4" />
     </button>
   </nav>
 </template>
@@ -22,6 +22,7 @@
 import BurgerIcon from '@/components/icons/BurgerIcon.vue'
 import ArrowIcon from '@/components/icons/ArrowIcon.vue'
 import PokeballIcon from '@/components/icons/PokeballIcon.vue'
+import router from '@/router'
 
 const props = withDefaults(
   defineProps<{

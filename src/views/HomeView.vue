@@ -5,6 +5,7 @@
       <SearchBar class="mt-10" />
       <div class="mt-10 grid grid-cols-2 gap-2">
         <CategoryCard
+          @click="() => (category.route ? router.push({ name: category.route }) : () => {})"
           v-for="category in categories"
           :key="category.title"
           :title="category.title"
@@ -34,16 +35,19 @@
 import SearchBar from '@/components/SearchBar.vue'
 import CategoryCard from '@/components/CategoryCard.vue'
 import NewsPreview from '@/components/NewsPreview.vue'
+import router from '@/router'
 
 interface Category {
   title: string
   color: string
+  route?: string
 }
 
 const categories: Category[] = [
   {
     title: 'Pokédex',
-    color: 'bg-teal-500'
+    color: 'bg-teal-500',
+    route: 'Pokedex'
   },
   {
     title: 'Moves',
