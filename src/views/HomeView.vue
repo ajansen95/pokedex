@@ -1,15 +1,18 @@
 <template>
-  <main class="px-7">
-    <h1 class="text-3xl font-bold">What Pokemon<br />are you looking for?</h1>
-    <SearchBar />
-    <div class="grid grid-cols-2 gap-2">
-      <CategoryCard
-        v-for="category in categories"
-        :key="category.title"
-        :title="category.title"
-        :color="category.color"
-      />
-    </div>
+  <main class="bg-black bg-opacity-10">
+    <section id="whiteSection" class="rounded-b-2xl bg-white px-7 pb-14">
+      <h1 class="text-3xl font-bold">What Pokemon<br />are you looking for?</h1>
+      <SearchBar class="mt-10" />
+      <div class="mt-10 grid grid-cols-2 gap-2">
+        <CategoryCard
+          v-for="category in categories"
+          :key="category.title"
+          :title="category.title"
+          :color="category.color"
+        />
+      </div>
+    </section>
+    <section id="graySection" class="h-32 px-7"></section>
   </main>
 </template>
 

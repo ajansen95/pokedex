@@ -1,6 +1,6 @@
 <template>
-  <div class="border border-black">
-    <AppBar />
+  <div>
+    <AppBar class="z-10" />
     <RouterView />
   </div>
 </template>
