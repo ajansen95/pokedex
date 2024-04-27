@@ -8,7 +8,7 @@
     </button>
     <PokeballIcon
       v-if="props.showPokeball"
-      class="absolute -right-[124px] -top-[120px] -z-10 h-80 border opacity-10"
+      class="absolute -right-[128px] -top-[119px] -z-10 h-80 border opacity-10"
       color-code1="#000000"
       color-code2="#000000"
       color-code3="#000000"

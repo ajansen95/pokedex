@@ -3,7 +3,7 @@
     <section id="categories" class="px-default pb-default2 rounded-b-3xl bg-white">
       <h1 class="text-3xl font-bold">What Pokemon<br />are you looking for?</h1>
       <SearchBar class="mt-10" />
-      <div class="mt-10 grid grid-cols-2 gap-2">
+      <div class="gap-default mt-10 grid grid-cols-2">
         <CategoryCard
           @click="() => (category.route ? router.push({ name: category.route }) : () => {})"
           v-for="category in categories"
@@ -14,7 +14,7 @@
       </div>
     </section>
     <section id="news" class="px-default pb-20">
-      <header class="mb-4 mt-7 flex items-baseline justify-between">
+      <header class="mt-default mb-4 flex items-baseline justify-between">
         <h2 class="text-2xl font-bold">Pokémon News</h2>
         <button class="text-sm font-bold text-blue-500">View All</button>
       </header>
