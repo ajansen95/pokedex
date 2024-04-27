@@ -12,7 +12,7 @@
         />
       </div>
     </section>
-    <section id="news" class="px-default">
+    <section id="news" class="px-default pb-20">
       <header class="mb-4 mt-7 flex items-baseline justify-between">
         <h2 class="text-2xl font-bold">Pokémon News</h2>
         <button class="text-sm font-bold text-blue-500">View All</button>
@@ -85,6 +85,12 @@ const pokemonNews: PokemonNews[] = [
     date: new Date(),
     imgUrl:
       'https://images.cgames.de/images/gsgp/290/detective-pikachu-birth-of-a-new-combination_2733996.jpg'
+  },
+  {
+    title: 'Pokémon Rumble Rush Arrives Soon',
+    date: new Date('May 15, 2019 03:24:00'),
+    imgUrl:
+      'https://www.pokemon.com/static-assets/content-assets/cms2-de-de/img/video-games/video-games/pokemon_rumble_rush/pokemon-rumble-rush-169.jpg'
   }
 ]
 </script>
