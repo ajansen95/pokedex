@@ -1,6 +1,6 @@
 <template>
   <main class="bg-black bg-opacity-10">
-    <section id="whiteSection" class="rounded-b-2xl bg-white px-7 pb-14">
+    <section id="whiteSection" class="px-default pb-default2 rounded-b-2xl bg-white">
       <h1 class="text-3xl font-bold">What Pokemon<br />are you looking for?</h1>
       <SearchBar class="mt-10" />
       <div class="mt-10 grid grid-cols-2 gap-2">
@@ -12,7 +12,7 @@
         />
       </div>
     </section>
-    <section id="graySection" class="h-32 px-7"></section>
+    <section id="graySection" class="px-default h-32"></section>
   </main>
 </template>
 

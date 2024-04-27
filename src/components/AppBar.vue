@@ -1,5 +1,5 @@
 <template>
-  <nav class="relative flex justify-between overflow-x-clip p-7">
+  <nav class="p-default relative flex justify-between overflow-x-clip">
     <PokeballIcon
       v-if="props.showPokeball"
       class="absolute -right-[124px] -top-[123px] -z-10 h-80 border opacity-10"
