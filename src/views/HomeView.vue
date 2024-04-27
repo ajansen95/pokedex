@@ -13,7 +13,7 @@
       </div>
     </section>
     <section id="news" class="px-default">
-      <header class="mt-7 flex items-baseline justify-between">
+      <header class="mb-4 mt-7 flex items-baseline justify-between">
         <h2 class="text-2xl font-bold">Pokémon News</h2>
         <button class="text-sm font-bold text-blue-500">View All</button>
       </header>
