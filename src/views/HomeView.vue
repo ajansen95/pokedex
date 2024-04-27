@@ -1,6 +1,6 @@
 <template>
   <main class="bg-black bg-opacity-10">
-    <section id="categories" class="px-default pb-default2 rounded-b-2xl bg-white">
+    <section id="categories" class="px-default pb-default2 rounded-b-3xl bg-white">
       <h1 class="text-3xl font-bold">What Pokemon<br />are you looking for?</h1>
       <SearchBar class="mt-10" />
       <div class="mt-10 grid grid-cols-2 gap-2">
@@ -77,12 +77,14 @@ const pokemonNews: PokemonNews[] = [
   {
     title: 'Pokémon Rumble Rush Arrives Soon',
     date: new Date('May 15, 2019 03:24:00'),
-    imgUrl: 'https://www2.tuhh.de/zll/wp-content/uploads/placeholder.png'
+    imgUrl:
+      'https://www.pokemon.com/static-assets/content-assets/cms2-de-de/img/video-games/video-games/pokemon_rumble_rush/pokemon-rumble-rush-169.jpg'
   },
   {
-    title: 'Detective Pikachu Sleuths joins Pokémon GO',
+    title: 'Detective Pikachu Sleuths join Pokémon GO',
     date: new Date(),
-    imgUrl: 'https://www2.tuhh.de/zll/wp-content/uploads/placeholder.png'
+    imgUrl:
+      'https://images.cgames.de/images/gsgp/290/detective-pikachu-birth-of-a-new-combination_2733996.jpg'
   }
 ]
 </script>

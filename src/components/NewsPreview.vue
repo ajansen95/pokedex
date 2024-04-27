@@ -10,7 +10,7 @@
         })
       }}</span>
     </div>
-    <img class="w-28 rounded-2xl object-cover" :src="props.imgUrl" alt="news_img" />
+    <img class="h-16 w-28 rounded-2xl object-cover" :src="props.imgUrl" alt="news_img" />
   </div>
 </template>
 
