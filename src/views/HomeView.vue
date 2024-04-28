@@ -46,28 +46,28 @@ interface Category {
 const categories: Category[] = [
   {
     title: 'Pokédex',
-    color: 'bg-teal-500',
+    color: 'bg-grass',
     route: 'Pokedex'
   },
   {
     title: 'Moves',
-    color: 'bg-red-500'
+    color: 'bg-fire'
   },
   {
     title: 'Abilities',
-    color: 'bg-blue-500'
+    color: 'bg-water'
   },
   {
     title: 'Items',
-    color: 'bg-yellow-500'
+    color: 'bg-electro'
   },
   {
     title: 'Locations',
-    color: 'bg-purple-500'
+    color: 'bg-poison'
   },
   {
     title: 'Type Charts',
-    color: 'bg-amber-800'
+    color: 'bg-earth'
   }
 ]
 
