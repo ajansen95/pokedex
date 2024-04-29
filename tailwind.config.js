@@ -1,6 +1,7 @@
 import colors from 'tailwindcss/colors.js'
 
 /** @type {import('tailwindcss').Config} */
+// noinspection JSUnusedGlobalSymbols
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {

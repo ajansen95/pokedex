@@ -1,8 +1,8 @@
 <template>
   <div
-    class="gap-default2 bg-grass relative z-10 flex h-28 flex-col rounded-2xl bg-opacity-80 p-3.5 text-white"
+    class="relative z-10 flex h-28 flex-col gap-default2 rounded-2xl bg-grass bg-opacity-80 p-3.5 text-white"
   >
-    <span class="text-sm font-bold">Bulbasauer</span>
+    <span class="text-sm font-bold">Bulbasaur</span>
     <TypeChip type="Grass" />
     <TypeChip type="Poison" />
     <PokeballIcon
