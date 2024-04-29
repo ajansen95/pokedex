@@ -8,9 +8,17 @@
 </template>
 
 <script setup lang="ts">
-import PokedexCard from '@/components/PokedexCard.vue'
-import { onMounted } from 'vue'
+import { onMounted, ref, toRaw } from 'vue'
 import { pkmnApi } from '@/api'
+import type { NamedAPIResourceList } from 'pokenode-ts'
+import PokedexCard from '@/components/PokedexCard.vue'
 
-onMounted(() => pkmnApi.getPokemonByName('bulbasaur').then((res) => console.log(res)))
+const pokemonList = ref<NamedAPIResourceList>()
+
+onMounted(() => fetchAllPokemon())
+
+async function fetchAllPokemon() {
+  pokemonList.value = await pkmnApi.listPokemons()
+  console.log(toRaw(pokemonList.value))
+}
 </script>
