@@ -2,7 +2,7 @@
   <div
     class="relative z-10 flex h-28 flex-col gap-default2 rounded-2xl bg-grass bg-opacity-80 p-3.5 text-white"
   >
-    <span class="text-sm font-bold">Bulbasaur</span>
+    <span class="text-sm font-bold">{{ germanName }}</span>
     <TypeChip type="Grass" />
     <TypeChip type="Poison" />
     <PokeballIcon
@@ -19,4 +19,17 @@
 <script setup lang="ts">
 import TypeChip from '@/components/TypeChip.vue'
 import PokeballIcon from '@/components/icons/PokeballIcon.vue'
+import type { PokemonSpecies } from 'pokenode-ts'
+import { computed } from 'vue'
+
+const germanName = computed(
+  () => props.species.names.find((name) => name.language.name === 'de')?.name
+)
+
+const props = withDefaults(
+  defineProps<{
+    species: PokemonSpecies
+  }>(),
+  {}
+)
 </script>

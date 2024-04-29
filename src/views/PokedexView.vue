@@ -2,23 +2,30 @@
   <main class="px-default">
     <h1 class="text-3xl font-bold">Pokédex</h1>
     <div class="mt-default grid grid-cols-2 gap-default">
-      <PokedexCard v-for="n in 5" :key="n" />
+      <PokedexCard
+        v-for="pokemonSpecies in pokemonSpeciesList"
+        :key="pokemonSpecies.name"
+        :species="pokemonSpecies"
+      />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, toRaw } from 'vue'
+import { onMounted, ref } from 'vue'
 import { pkmnApi } from '@/api'
-import type { NamedAPIResourceList } from 'pokenode-ts'
+import { type PokemonSpecies, type NamedAPIResourceList } from 'pokenode-ts'
 import PokedexCard from '@/components/PokedexCard.vue'
 
-const pokemonList = ref<NamedAPIResourceList>()
+const pokemonSpeciesList = ref<PokemonSpecies[]>([])
 
 onMounted(() => fetchAllPokemon())
 
 async function fetchAllPokemon() {
-  pokemonList.value = await pkmnApi.listPokemons()
-  console.log(toRaw(pokemonList.value))
+  const pokemonList: NamedAPIResourceList = await pkmnApi.listPokemonSpecies()
+  for (const pkmn of pokemonList.results) {
+    const response = await pkmnApi.getPokemonSpeciesByName(pkmn.name)
+    pokemonSpeciesList.value.push(response)
+  }
 }
 </script>
