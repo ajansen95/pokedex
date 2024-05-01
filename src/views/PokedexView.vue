@@ -3,8 +3,9 @@
     <h1 class="text-3xl font-bold">Pokédex</h1>
     <div class="mt-default grid grid-cols-2 gap-default">
       <PokedexCard
-        v-for="pokemonSpecies in pokemonSpeciesList"
+        v-for="(pokemonSpecies, index) in pokemonSpeciesList"
         :key="pokemonSpecies.name"
+        :pokemon="pokemonList[index]"
         :species="pokemonSpecies"
       />
     </div>
@@ -14,20 +15,33 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { pkmnApi } from '@/api'
-import { type PokemonSpecies, type NamedAPIResourceList } from 'pokenode-ts'
+import { type PokemonSpecies, type NamedAPIResourceList, type Pokemon } from 'pokenode-ts'
 import PokedexCard from '@/components/PokedexCard.vue'
 
+const pokemonList = ref<Pokemon[]>([])
 const pokemonSpeciesList = ref<PokemonSpecies[]>([])
 
-onMounted(() => fetchAllPokemon())
+onMounted(async () => {
+  const pokemonListed: NamedAPIResourceList = await pkmnApi.listPokemons()
+  pokemonList.value = pokemonList.value.concat(await Promise.all(fetchAllPokemon(pokemonListed)))
+  pokemonSpeciesList.value = pokemonSpeciesList.value.concat(
+    await Promise.all(fetchAllPokemonSpecies(pokemonListed))
+  )
+})
 
-async function fetchAllPokemon() {
-  const pokemonList: NamedAPIResourceList = await pkmnApi.listPokemonSpecies()
-  const promises = []
-  for (const pkmn of pokemonList.results) {
-    promises.push(pkmnApi.getPokemonSpeciesByName(pkmn.name))
+function fetchAllPokemon(pokemonListed: NamedAPIResourceList): Promise<Pokemon>[] {
+  const promisesPokemon: Promise<Pokemon>[] = []
+  for (const pkmn of pokemonListed.results) {
+    promisesPokemon.push(pkmnApi.getPokemonByName(pkmn.name))
   }
-  const responses = await Promise.all(promises)
-  pokemonSpeciesList.value = pokemonSpeciesList.value.concat(responses)
+  return promisesPokemon
+}
+
+function fetchAllPokemonSpecies(pokemonListed: NamedAPIResourceList): Promise<PokemonSpecies>[] {
+  const promisesSpecies: Promise<PokemonSpecies>[] = []
+  for (const pkmn of pokemonListed.results) {
+    promisesSpecies.push(pkmnApi.getPokemonSpeciesByName(pkmn.name))
+  }
+  return promisesSpecies
 }
 </script>

@@ -28,6 +28,7 @@ const germanName = computed(
 
 const props = withDefaults(
   defineProps<{
+    pokemon: Pokemon
     species: PokemonSpecies
   }>(),
   {}
