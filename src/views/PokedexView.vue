@@ -23,9 +23,11 @@ onMounted(() => fetchAllPokemon())
 
 async function fetchAllPokemon() {
   const pokemonList: NamedAPIResourceList = await pkmnApi.listPokemonSpecies()
+  const promises = []
   for (const pkmn of pokemonList.results) {
-    const response = await pkmnApi.getPokemonSpeciesByName(pkmn.name)
-    pokemonSpeciesList.value.push(response)
+    promises.push(pkmnApi.getPokemonSpeciesByName(pkmn.name))
   }
+  const responses = await Promise.all(promises)
+  pokemonSpeciesList.value = pokemonSpeciesList.value.concat(responses)
 }
 </script>
