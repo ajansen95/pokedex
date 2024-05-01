@@ -1,6 +1,7 @@
 <template>
   <div
-    class="relative z-10 flex h-28 flex-col gap-default2 rounded-2xl bg-grass bg-opacity-80 p-3.5 text-white"
+    class="relative z-10 flex h-28 flex-col gap-default2 rounded-2xl bg-opacity-80 p-3.5 text-white"
+    :class="[cardColor]"
   >
     <span class="text-sm font-bold">{{ germanName }}</span>
     <TypeChip type="Grass" />
@@ -19,8 +20,22 @@
 <script setup lang="ts">
 import TypeChip from '@/components/TypeChip.vue'
 import PokeballIcon from '@/components/icons/PokeballIcon.vue'
-import type { PokemonSpecies } from 'pokenode-ts'
+import type { Pokemon, PokemonSpecies } from 'pokenode-ts'
 import { computed } from 'vue'
+
+const colorMap = {
+  grass: 'bg-grass',
+  fire: 'bg-fire',
+  water: 'bg-water',
+  bug: 'bg-bug',
+  normal: 'bg-stone-700',
+  flying: 'bg-blue-300',
+  electro: 'bg-yellow-500'
+}
+
+const cardColor = computed(
+  () => colorMap[props.pokemon.types[0].type.name as keyof typeof colorMap] ?? 'bg-black'
+)
 
 const germanName = computed(
   () => props.species.names.find((name) => name.language.name === 'de')?.name
