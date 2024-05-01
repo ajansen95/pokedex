@@ -4,7 +4,7 @@
     :class="[cardColor]"
   >
     <span class="text-sm font-bold">{{ germanName }}</span>
-    <TypeChip v-for="type in pokemon.types" :key="type.type.name" :type="type.type.name" />
+    <TypeChip v-for="type in types" :key="type.name" :type="getGermanType(type)" />
     <PokeballIcon
       class="absolute -bottom-3.5 -right-4 h-24 opacity-30"
       color-code1="#FFFFFF"
@@ -25,8 +25,9 @@
 <script setup lang="ts">
 import TypeChip from '@/components/TypeChip.vue'
 import PokeballIcon from '@/components/icons/PokeballIcon.vue'
-import type { Pokemon, PokemonSpecies } from 'pokenode-ts'
-import { computed } from 'vue'
+import type { Pokemon, PokemonSpecies, Type } from 'pokenode-ts'
+import { computed, onMounted, ref } from 'vue'
+import { pkmnApi } from '@/api'
 
 const colorMap = {
   grass: 'bg-grass',
@@ -38,6 +39,17 @@ const colorMap = {
   electro: 'bg-yellow-500'
 }
 
+const props = withDefaults(
+  defineProps<{
+    pokemon: Pokemon
+    species: PokemonSpecies
+  }>(),
+  {}
+)
+
+const types = ref<Type[]>([])
+onMounted(() => getPokemonTypes())
+
 const cardColor = computed(
   () => colorMap[props.pokemon.types[0].type.name as keyof typeof colorMap] ?? 'bg-black'
 )
@@ -48,11 +60,13 @@ const germanName = computed(
 
 const spritesUrl = computed(() => props.pokemon.sprites.other?.['official-artwork'].front_default)
 
-const props = withDefaults(
-  defineProps<{
-    pokemon: Pokemon
-    species: PokemonSpecies
-  }>(),
-  {}
-)
+async function getPokemonTypes() {
+  const promises: Promise<Type>[] = []
+  props.pokemon.types.forEach((type) => promises.push(pkmnApi.getTypeByName(type.type.name)))
+  types.value = await Promise.all(promises)
+}
+
+function getGermanType(type: Type) {
+  return type.names.find((name) => name.language.name === 'de')?.name ?? ''
+}
 </script>
