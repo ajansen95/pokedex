@@ -14,6 +14,12 @@
       color-code4="#FFFFFF"
       color-code5="#FFFFFF00"
     />
+    <img
+      v-if="spritesUrl"
+      :src="spritesUrl"
+      alt="pokemon_img"
+      class="absolute bottom-2 right-1 h-16"
+    />
   </div>
 </template>
 
@@ -40,6 +46,8 @@ const cardColor = computed(
 const germanName = computed(
   () => props.species.names.find((name) => name.language.name === 'de')?.name
 )
+
+const spritesUrl = computed(() => props.pokemon.sprites.other?.['official-artwork'].front_default)
 
 const props = withDefaults(
   defineProps<{
