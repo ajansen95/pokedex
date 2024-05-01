@@ -4,8 +4,7 @@
     :class="[cardColor]"
   >
     <span class="text-sm font-bold">{{ germanName }}</span>
-    <TypeChip type="Grass" />
-    <TypeChip type="Poison" />
+    <TypeChip v-for="type in pokemon.types" :key="type.type.name" :type="type.type.name" />
     <PokeballIcon
       class="absolute -bottom-3.5 -right-4 h-24 opacity-30"
       color-code1="#FFFFFF"
