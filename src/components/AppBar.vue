@@ -1,5 +1,5 @@
 <template>
-  <nav class="px-default relative flex h-20 justify-between overflow-x-clip">
+  <nav class="relative flex h-20 justify-between overflow-x-clip px-default">
     <button v-if="props.showArrow" class="rounded-full" @click="() => router.back()">
       <ArrowIcon class="h-4 w-4" />
     </button>
@@ -26,12 +26,14 @@ import router from '@/router'
 
 const props = withDefaults(
   defineProps<{
-    showPokeball: boolean
-    showArrow: boolean
-    showMenu: boolean
+    showPokeball?: boolean
+    showArrow?: boolean
+    showMenu?: boolean
   }>(),
   {
-    showPokeball: true
+    showPokeball: true,
+    showArrow: true,
+    showMenu: true
   }
 )
 </script>

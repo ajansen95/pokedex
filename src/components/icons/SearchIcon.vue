@@ -12,7 +12,7 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    fillClass: string
+    fillClass?: string
   }>(),
   {
     fillClass: 'fill-black'

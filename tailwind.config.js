@@ -1,6 +1,7 @@
 import colors from 'tailwindcss/colors.js'
 
 /** @type {import('tailwindcss').Config} */
+// noinspection JSUnusedGlobalSymbols
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
@@ -23,7 +24,10 @@ export default {
         water: colors.blue['500'],
         electro: colors.yellow['500'],
         poison: colors.purple['500'],
-        earth: colors.amber['800']
+        earth: colors.amber['800'],
+        bug: colors.green['700'],
+        normal: colors.stone['700'],
+        flying: colors.blue['300']
       }
     }
   },
