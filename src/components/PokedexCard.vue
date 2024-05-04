@@ -3,7 +3,7 @@
     class="relative z-10 flex h-28 flex-col gap-default2 rounded-2xl bg-opacity-80 p-3.5 text-white"
     :class="[cardColor]"
   >
-    <span class="text-sm font-bold">{{ germanName }}</span>
+    <span v-if="germanName" class="text-sm font-bold">{{ germanName }}</span>
     <TypeChip v-for="type in types" :key="type.name" :type="getGermanType(type)" />
     <PokeballIcon
       class="absolute -bottom-3.5 -right-4 h-24 opacity-30"
@@ -41,27 +41,36 @@ const colorMap = {
 
 const props = withDefaults(
   defineProps<{
-    pokemon: Pokemon
-    species: PokemonSpecies
+    pokemon?: Pokemon
+    species?: PokemonSpecies
+    isLoading?: boolean
   }>(),
-  {}
+  {
+    isLoading: false
+  }
 )
 
 const types = ref<Type[]>([])
 onMounted(() => getPokemonTypes())
 
-const cardColor = computed(
-  () => colorMap[props.pokemon.types[0].type.name as keyof typeof colorMap] ?? 'bg-black'
-)
+const cardColor = computed(() => {
+  if (props.isLoading || !props.pokemon) return 'bg-gray-300'
+  else return colorMap[props.pokemon.types[0].type.name as keyof typeof colorMap] ?? 'bg-black'
+})
 
-const germanName = computed(
-  () => props.species.names.find((name) => name.language.name === 'de')?.name
-)
+const germanName = computed(() => {
+  if (!props.species) return undefined
+  else return props.species.names.find((name) => name.language.name === 'de')?.name
+})
 
-const spritesUrl = computed(() => props.pokemon.sprites.other?.['official-artwork'].front_default)
+const spritesUrl = computed(() => {
+  if (!props.pokemon) return undefined
+  else return props.pokemon.sprites.other?.['official-artwork'].front_default
+})
 
 async function getPokemonTypes() {
   const promises: Promise<Type>[] = []
+  if (!props.pokemon) return
   props.pokemon.types.forEach((type) => promises.push(pkmnApi.getTypeByName(type.type.name)))
   types.value = await Promise.all(promises)
 }
