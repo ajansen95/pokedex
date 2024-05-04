@@ -1,9 +1,9 @@
 <template>
   <main class="bg-black bg-opacity-10">
-    <section id="categories" class="px-default pb-default2 rounded-b-3xl bg-white">
+    <section id="categories" class="rounded-b-3xl bg-white px-default pb-default2">
       <h1 class="text-3xl font-bold">What Pokemon<br />are you looking for?</h1>
       <SearchBar class="mt-10" />
-      <div class="gap-default mt-10 grid grid-cols-2">
+      <div class="mt-10 grid grid-cols-2 gap-default">
         <CategoryCard
           @click="() => (category.route ? router.push({ name: category.route }) : () => {})"
           v-for="category in categories"
@@ -14,7 +14,7 @@
       </div>
     </section>
     <section id="news" class="px-default pb-20">
-      <header class="mt-default mb-4 flex items-baseline justify-between">
+      <header class="mb-4 mt-default flex items-baseline justify-between">
         <h2 class="text-2xl font-bold">Pokémon News</h2>
         <button class="text-sm font-bold text-blue-500">View All</button>
       </header>
@@ -59,7 +59,7 @@ const categories: Category[] = [
   },
   {
     title: 'Items',
-    color: 'bg-electro'
+    color: 'bg-electric'
   },
   {
     title: 'Locations',
@@ -67,7 +67,7 @@ const categories: Category[] = [
   },
   {
     title: 'Type Charts',
-    color: 'bg-earth'
+    color: 'bg-ground'
   }
 ]
 

@@ -22,12 +22,19 @@ export default {
         grass: colors.emerald['500'],
         fire: colors.red['500'],
         water: colors.blue['500'],
-        electro: colors.yellow['500'],
+        electric: colors.yellow['500'],
         poison: colors.purple['500'],
-        earth: colors.amber['800'],
-        bug: colors.green['700'],
-        normal: colors.stone['700'],
-        flying: colors.blue['300']
+        bug: colors.emerald['700'],
+        ground: colors.amber['800'],
+        normal: colors.stone['600'],
+        flying: colors.blue['300'],
+        fairy: colors.red['300'],
+        fighting: colors.orange['700'],
+        psychic: colors.purple['800'],
+        rock: colors.amber['600'],
+        ghost: colors.purple['950'],
+        ice: colors.cyan['500'],
+        dragon: colors.blue['900']
       }
     }
   },

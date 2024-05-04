@@ -34,9 +34,18 @@ const colorMap = {
   fire: 'bg-fire',
   water: 'bg-water',
   bug: 'bg-bug',
-  normal: 'bg-stone-700',
-  flying: 'bg-blue-300',
-  electro: 'bg-yellow-500'
+  normal: 'bg-normal',
+  flying: 'bg-flying',
+  electric: 'bg-electric',
+  poison: 'bg-poison',
+  ground: 'bg-ground',
+  fairy: 'bg-fairy',
+  fighting: 'bg-fighting',
+  psychic: 'bg-psychic',
+  rock: 'bg-rock',
+  ghost: 'bg-ghost',
+  ice: 'bg-ice',
+  dragon: 'bg-dragon'
 }
 
 const props = withDefaults(
