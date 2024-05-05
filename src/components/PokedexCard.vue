@@ -17,7 +17,7 @@
       v-if="spritesUrl"
       :src="spritesUrl"
       alt="pokemon_img"
-      class="absolute bottom-2 right-1 h-16"
+      class="absolute bottom-2 right-0 h-20"
     />
   </div>
 </template>
