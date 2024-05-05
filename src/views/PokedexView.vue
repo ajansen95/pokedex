@@ -13,6 +13,14 @@
         :pokemon="pokemonList[index]"
         :species="pokemonSpecies"
         :is-loading="isLoading"
+        @click="
+          () => {
+            router.push({
+              name: 'PokedexDetail',
+              params: { pokemonId: pokemonSpecies.id }
+            })
+          }
+        "
       />
     </div>
   </main>
@@ -21,6 +29,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { pkmnApi } from '@/api'
+import router from '@/router'
 import { type PokemonSpecies, type NamedAPIResourceList, type Pokemon } from 'pokenode-ts'
 import PokedexCard from '@/components/PokedexCard.vue'
 
