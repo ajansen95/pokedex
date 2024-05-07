@@ -1,10 +1,10 @@
 <template>
   <nav class="relative z-10 flex h-20 justify-between overflow-x-clip px-default">
-    <button v-if="props.showArrow" class="rounded-full" @click="() => router.back()">
-      <ArrowIcon class="h-4 w-4" />
+    <button v-if="props.leading" class="rounded-full" @click="props.leading.clickFunction">
+      <component :is="props.leading.component" class="h-4 w-4" />
     </button>
-    <button v-if="props.showMenu" class="rounded-full">
-      <BurgerIcon class="h-4 w-4" />
+    <button v-if="props.trailing" class="rounded-full" @click="props.trailing.clickFunction">
+      <component :is="props.trailing.component" class="h-4 w-4" />
     </button>
     <PokeballIcon
       v-if="props.showPokeball"
@@ -19,16 +19,19 @@
 </template>
 
 <script setup lang="ts">
-import BurgerIcon from '@/components/icons/BurgerIcon.vue'
-import ArrowIcon from '@/components/icons/ArrowIcon.vue'
 import PokeballIcon from '@/components/icons/PokeballIcon.vue'
-import router from '@/router'
+import type { Component } from 'vue'
+
+interface AppBarComponent {
+  component: Component
+  clickFunction: () => void
+}
 
 const props = withDefaults(
   defineProps<{
     showPokeball?: boolean
-    showArrow?: boolean
-    showMenu?: boolean
+    leading?: AppBarComponent
+    trailing?: AppBarComponent
   }>(),
   {
     showPokeball: true,

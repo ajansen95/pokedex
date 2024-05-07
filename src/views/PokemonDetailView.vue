@@ -1,5 +1,15 @@
 <template>
-  <AppBar :show-arrow="true" :show-menu="true" class="bg-grass bg-opacity-80" />
+  <AppBar
+    class="bg-grass bg-opacity-80"
+    :leading="{
+      component: ArrowIcon,
+      clickFunction: () => router.back()
+    }"
+    :trailing="{
+      component: BurgerIcon,
+      clickFunction: () => {}
+    }"
+  />
   <main class="bg-grass bg-opacity-80 px-default">{{ pokemon?.name }}</main>
 </template>
 
@@ -8,6 +18,9 @@ import { pkmnApi } from '@/api'
 import { onMounted, ref } from 'vue'
 import type { Pokemon } from 'pokenode-ts'
 import AppBar from '@/components/AppBar.vue'
+import ArrowIcon from '@/components/icons/ArrowIcon.vue'
+import router from '@/router'
+import BurgerIcon from '@/components/icons/BurgerIcon.vue'
 
 const props = withDefaults(
   defineProps<{
