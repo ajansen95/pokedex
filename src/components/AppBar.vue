@@ -1,10 +1,14 @@
 <template>
   <nav class="relative z-10 flex h-20 justify-between overflow-x-clip px-default">
     <button v-if="props.leading" class="rounded-full" @click="props.leading.clickFunction">
-      <component :is="props.leading.component" class="h-4 w-4" />
+      <component :is="props.leading.component" class="h-4 w-4" :fill-class="props.leading.color" />
     </button>
     <button v-if="props.trailing" class="rounded-full" @click="props.trailing.clickFunction">
-      <component :is="props.trailing.component" class="h-4 w-4" />
+      <component
+        :is="props.trailing.component"
+        class="h-4 w-4"
+        :fill-class="props.trailing.color"
+      />
     </button>
     <PokeballIcon
       v-if="props.showPokeball"
@@ -24,6 +28,7 @@ import PokeballIcon from '@/components/icons/PokeballIcon.vue'
 
 interface AppBarComponent {
   component: Component
+  color?: 'fill-white' | 'fill-black'
   clickFunction: () => void
 }
 
@@ -34,9 +39,7 @@ const props = withDefaults(
     trailing?: AppBarComponent
   }>(),
   {
-    showPokeball: true,
-    showArrow: true,
-    showMenu: true
+    showPokeball: true
   }
 )
 </script>

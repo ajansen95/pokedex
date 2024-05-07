@@ -3,10 +3,12 @@
     class="bg-grass bg-opacity-80"
     :leading="{
       component: ArrowIcon,
+      color: 'fill-white',
       clickFunction: () => router.back()
     }"
     :trailing="{
       component: BurgerIcon,
+      color: 'fill-white',
       clickFunction: () => {}
     }"
   />
