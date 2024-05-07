@@ -7,7 +7,7 @@
       clickFunction: () => router.back()
     }"
     :trailing="{
-      component: BurgerIcon,
+      component: HeartIcon,
       color: 'fill-white',
       clickFunction: () => {}
     }"
@@ -24,7 +24,7 @@ import router from '@/router'
 import type { PokemonSpecies } from 'pokenode-ts'
 import AppBar from '@/components/AppBar.vue'
 import ArrowIcon from '@/components/icons/ArrowIcon.vue'
-import BurgerIcon from '@/components/icons/BurgerIcon.vue'
+import HeartIcon from '@/components/icons/HeartIcon.vue'
 
 const props = withDefaults(
   defineProps<{
