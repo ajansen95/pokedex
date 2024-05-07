@@ -9,7 +9,7 @@ import type { Pokemon } from 'pokenode-ts'
 
 const props = withDefaults(
   defineProps<{
-    pokemonId: number
+    pokemonName: string
   }>(),
   {}
 )
@@ -19,6 +19,6 @@ const pokemon = ref<Pokemon>()
 onMounted(() => fetchPokemonDetails())
 
 async function fetchPokemonDetails() {
-  pokemon.value = await pkmnApi.getPokemonById(props.pokemonId)
+  pokemon.value = await pkmnApi.getPokemonByName(props.pokemonName)
 }
 </script>

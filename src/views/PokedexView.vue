@@ -17,7 +17,7 @@
           () => {
             router.push({
               name: 'PokedexDetail',
-              params: { pokemonId: pokemonSpecies.id }
+              params: { pokemonName: pokemonSpecies.name }
             })
           }
         "
