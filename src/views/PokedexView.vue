@@ -39,7 +39,7 @@ const pokemonSpeciesList = ref<PokemonSpecies[]>([])
 
 onMounted(async () => {
   isLoading.value = true
-  const pokemonListed: NamedAPIResourceList = await pkmnApi.listPokemons(0, 30)
+  const pokemonListed: NamedAPIResourceList = await pkmnApi.listPokemons(0, 10)
   pokemonList.value = pokemonList.value.concat(await Promise.all(fetchAllPokemon(pokemonListed)))
   pokemonSpeciesList.value = pokemonSpeciesList.value.concat(
     await Promise.all(fetchAllPokemonSpecies(pokemonListed))

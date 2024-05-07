@@ -19,7 +19,13 @@ const router = createRouter({
     {
       path: '/pokemon/:pokemonId',
       name: 'PokedexDetail',
-      component: PokemonDetailView
+      component: PokemonDetailView,
+      props: (route) => {
+        return {
+          ...route.params,
+          pokemonId: Number.parseInt(route.params.pokemonId as string)
+        }
+      }
     }
   ]
 })
