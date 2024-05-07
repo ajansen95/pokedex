@@ -1,5 +1,5 @@
 <template>
-  <nav class="relative flex h-20 justify-between overflow-x-clip px-default">
+  <nav class="relative z-10 flex h-20 justify-between overflow-x-clip px-default">
     <button v-if="props.showArrow" class="rounded-full" @click="() => router.back()">
       <ArrowIcon class="h-4 w-4" />
     </button>

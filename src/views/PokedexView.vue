@@ -1,4 +1,5 @@
 <template>
+  <AppBar :show-arrow="true" :show-menu="true" />
   <main class="px-default">
     <h1 class="text-3xl font-bold">Pokédex</h1>
 
@@ -32,6 +33,7 @@ import { pkmnApi } from '@/api'
 import router from '@/router'
 import { type PokemonSpecies, type NamedAPIResourceList, type Pokemon } from 'pokenode-ts'
 import PokedexCard from '@/components/PokedexCard.vue'
+import AppBar from '@/components/AppBar.vue'
 
 const isLoading = ref(true)
 const pokemonList = ref<Pokemon[]>([])

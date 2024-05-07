@@ -1,4 +1,5 @@
 <template>
+  <AppBar :show-arrow="false" :show-menu="false" />
   <main class="bg-black bg-opacity-10">
     <section id="categories" class="rounded-b-3xl bg-white px-default pb-default2">
       <h1 class="text-3xl font-bold">What Pokemon<br />are you looking for?</h1>
@@ -36,6 +37,7 @@ import SearchBar from '@/components/SearchBar.vue'
 import CategoryCard from '@/components/CategoryCard.vue'
 import NewsPreview from '@/components/NewsPreview.vue'
 import router from '@/router'
+import AppBar from '@/components/AppBar.vue'
 
 interface Category {
   title: string
