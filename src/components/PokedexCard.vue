@@ -23,11 +23,12 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref, computed } from 'vue'
+import { getGermanType } from '@/common/helperFunctions'
+import { pkmnApi } from '@/api'
+import type { Pokemon, PokemonSpecies, Type } from 'pokenode-ts'
 import TypeChip from '@/components/TypeChip.vue'
 import PokeballIcon from '@/components/icons/PokeballIcon.vue'
-import type { Pokemon, PokemonSpecies, Type } from 'pokenode-ts'
-import { computed, onMounted, ref } from 'vue'
-import { pkmnApi } from '@/api'
 
 const colorMap = {
   grass: 'bg-grass',
@@ -82,9 +83,5 @@ async function getPokemonTypes() {
   if (!props.pokemon) return
   props.pokemon.types.forEach((type) => promises.push(pkmnApi.getTypeByName(type.type.name)))
   types.value = await Promise.all(promises)
-}
-
-function getGermanType(type: Type) {
-  return type.names.find((name) => name.language.name === 'de')?.name ?? ''
 }
 </script>

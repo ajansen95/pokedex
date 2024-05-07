@@ -14,6 +14,7 @@
   />
   <main class="bg-grass bg-opacity-80 px-default text-white">
     <h1 class="text-4xl font-bold">{{ germanName }}</h1>
+    <TypeChip v-for="type in types" :key="type.name" :type="getGermanType(type)" />
   </main>
 </template>
 
@@ -21,10 +22,12 @@
 import { computed, onMounted, ref } from 'vue'
 import { pkmnApi } from '@/api'
 import router from '@/router'
-import type { PokemonSpecies } from 'pokenode-ts'
+import type { Pokemon, PokemonSpecies, Type } from 'pokenode-ts'
 import AppBar from '@/components/AppBar.vue'
 import ArrowIcon from '@/components/icons/ArrowIcon.vue'
 import HeartIcon from '@/components/icons/HeartIcon.vue'
+import TypeChip from '@/components/TypeChip.vue'
+import { getGermanType } from '@/common/helperFunctions'
 
 const props = withDefaults(
   defineProps<{
@@ -33,15 +36,32 @@ const props = withDefaults(
   {}
 )
 
-onMounted(() => fetchPokemonDetails())
+onMounted(async () => {
+  await fetchPokemon()
+  await fetchPokemonSpecies()
+  await getPokemonTypes()
+})
 
-const pokemon = ref<PokemonSpecies>()
+const pokemon = ref<Pokemon>()
+const pokemonSpecies = ref<PokemonSpecies>()
+const types = ref<Type[]>([])
 
 const germanName = computed(
-  () => pokemon.value?.names.find((name) => name.language.name === 'de')?.name
+  () => pokemonSpecies.value?.names.find((name) => name.language.name === 'de')?.name
 )
 
-async function fetchPokemonDetails() {
-  pokemon.value = await pkmnApi.getPokemonSpeciesByName(props.pokemonName)
+async function fetchPokemon() {
+  pokemon.value = await pkmnApi.getPokemonByName(props.pokemonName)
+}
+
+async function fetchPokemonSpecies() {
+  pokemonSpecies.value = await pkmnApi.getPokemonSpeciesByName(props.pokemonName)
+}
+
+async function getPokemonTypes() {
+  const promises: Promise<Type>[] = []
+  if (!pokemon.value) return
+  pokemon.value.types.forEach((type) => promises.push(pkmnApi.getTypeByName(type.type.name)))
+  types.value = await Promise.all(promises)
 }
 </script>
