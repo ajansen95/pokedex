@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import PokeballIcon from '@/components/icons/PokeballIcon.vue'
 import type { Component } from 'vue'
+import PokeballIcon from '@/components/icons/PokeballIcon.vue'
 
 interface AppBarComponent {
   component: Component

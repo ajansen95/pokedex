@@ -14,12 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { pkmnApi } from '@/api'
 import { onMounted, ref } from 'vue'
+import { pkmnApi } from '@/api'
+import router from '@/router'
 import type { Pokemon } from 'pokenode-ts'
 import AppBar from '@/components/AppBar.vue'
 import ArrowIcon from '@/components/icons/ArrowIcon.vue'
-import router from '@/router'
 import BurgerIcon from '@/components/icons/BurgerIcon.vue'
 
 const props = withDefaults(

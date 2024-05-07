@@ -33,11 +33,11 @@
 </template>
 
 <script setup lang="ts">
-import SearchBar from '@/components/SearchBar.vue'
-import CategoryCard from '@/components/CategoryCard.vue'
-import NewsPreview from '@/components/NewsPreview.vue'
 import router from '@/router'
 import AppBar from '@/components/AppBar.vue'
+import SearchBar from '@/components/SearchBar.vue'
+import NewsPreview from '@/components/NewsPreview.vue'
+import CategoryCard from '@/components/CategoryCard.vue'
 
 interface Category {
   title: string
