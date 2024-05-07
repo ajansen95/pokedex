@@ -24,30 +24,11 @@
 
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
-import { getGermanType } from '@/common/helperFunctions'
+import { getGermanType, colorMap } from '@/common/helperFunctions'
 import { pkmnApi } from '@/api'
 import type { Pokemon, PokemonSpecies, Type } from 'pokenode-ts'
 import TypeChip from '@/components/TypeChip.vue'
 import PokeballIcon from '@/components/icons/PokeballIcon.vue'
-
-const colorMap = {
-  grass: 'bg-grass',
-  fire: 'bg-fire',
-  water: 'bg-water',
-  bug: 'bg-bug',
-  normal: 'bg-normal',
-  flying: 'bg-flying',
-  electric: 'bg-electric',
-  poison: 'bg-poison',
-  ground: 'bg-ground',
-  fairy: 'bg-fairy',
-  fighting: 'bg-fighting',
-  psychic: 'bg-psychic',
-  rock: 'bg-rock',
-  ghost: 'bg-ghost',
-  ice: 'bg-ice',
-  dragon: 'bg-dragon'
-}
 
 const props = withDefaults(
   defineProps<{
@@ -60,8 +41,9 @@ const props = withDefaults(
   }
 )
 
-const types = ref<Type[]>([])
 onMounted(() => getPokemonTypes())
+
+const types = ref<Type[]>([])
 
 const cardColor = computed(() => {
   if (props.isLoading || !props.pokemon) return 'bg-gray-300'

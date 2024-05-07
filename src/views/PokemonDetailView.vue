@@ -1,6 +1,7 @@
 <template>
   <AppBar
-    class="bg-grass bg-opacity-80"
+    class="bg-opacity-80"
+    :class="cardColor"
     :leading="{
       component: ArrowIcon,
       color: 'fill-white',
@@ -12,14 +13,15 @@
       clickFunction: () => {}
     }"
   />
-  <main class="bg-grass bg-opacity-80 px-default text-white">
+  <main class="bg-opacity-80 px-default text-white" :class="cardColor">
     <h1 class="text-4xl font-bold">{{ germanName }}</h1>
     <TypeChip v-for="type in types" :key="type.name" :type="getGermanType(type)" />
   </main>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
+import { getGermanType, colorMap } from '@/common/helperFunctions'
 import { pkmnApi } from '@/api'
 import router from '@/router'
 import type { Pokemon, PokemonSpecies, Type } from 'pokenode-ts'
@@ -27,7 +29,6 @@ import AppBar from '@/components/AppBar.vue'
 import ArrowIcon from '@/components/icons/ArrowIcon.vue'
 import HeartIcon from '@/components/icons/HeartIcon.vue'
 import TypeChip from '@/components/TypeChip.vue'
-import { getGermanType } from '@/common/helperFunctions'
 
 const props = withDefaults(
   defineProps<{
@@ -49,6 +50,11 @@ const types = ref<Type[]>([])
 const germanName = computed(
   () => pokemonSpecies.value?.names.find((name) => name.language.name === 'de')?.name
 )
+
+const cardColor = computed(() => {
+  if (pokemon.value) return colorMap[pokemon.value.types[0].type.name as keyof typeof colorMap]
+  else return 'bg-black'
+})
 
 async function fetchPokemon() {
   pokemon.value = await pkmnApi.getPokemonByName(props.pokemonName)
