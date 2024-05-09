@@ -1,22 +1,27 @@
 <template>
-  <AppBar
-    class="bg-opacity-80"
-    :class="cardColor"
-    :leading="{
-      component: ArrowIcon,
-      color: 'fill-white',
-      clickFunction: () => router.back()
-    }"
-    :trailing="{
-      component: HeartIcon,
-      color: 'fill-white',
-      clickFunction: () => {}
-    }"
-  />
-  <main class="bg-opacity-80 px-default text-white" :class="cardColor">
-    <h1 class="text-4xl font-bold">{{ germanName }}</h1>
-    <TypeChip v-for="type in types" :key="type.name" :type="getGermanType(type)" />
-  </main>
+  <div class="flex h-full flex-col">
+    <AppBar
+      class="bg-opacity-80"
+      :class="cardColor"
+      :leading="{
+        component: ArrowIcon,
+        color: 'fill-white',
+        clickFunction: () => router.back()
+      }"
+      :trailing="{
+        component: HeartIcon,
+        color: 'fill-white',
+        clickFunction: () => {}
+      }"
+    />
+    <main class="flex flex-1 flex-col bg-opacity-80 px-default text-white" :class="cardColor">
+      <h1 class="text-4xl font-bold">{{ germanName }}</h1>
+      <span class="self-end font-bold">#001</span>
+      <div class="flex gap-2">
+        <TypeChip v-for="type in types" :key="type.name" :type="getGermanType(type)" size="lg" />
+      </div>
+    </main>
+  </div>
 </template>
 
 <script setup lang="ts">
