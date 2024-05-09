@@ -14,12 +14,16 @@
         clickFunction: () => {}
       }"
     />
-    <main class="flex flex-1 flex-col bg-opacity-80 px-default text-white" :class="cardColor">
-      <h1 class="text-4xl font-bold">{{ germanName }}</h1>
-      <span class="self-end text-lg font-bold">#{{ formatPokemonId(pokemon?.id) }}</span>
-      <div class="flex gap-2">
-        <TypeChip v-for="type in types" :key="type.name" :type="getGermanType(type)" size="lg" />
-      </div>
+    <main class="flex flex-1 flex-col bg-opacity-80" :class="cardColor">
+      <section class="flex flex-1 flex-col px-default text-white">
+        <h1 class="text-4xl font-bold">{{ germanName }}</h1>
+        <span class="self-end text-lg font-bold">#{{ formatPokemonId(pokemon?.id) }}</span>
+        <div class="flex gap-2">
+          <TypeChip v-for="type in types" :key="type.name" :type="getGermanType(type)" size="lg" />
+        </div>
+      </section>
+
+      <section class="h-72 rounded-t-3xl border bg-white"></section>
     </main>
   </div>
 </template>
