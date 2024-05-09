@@ -22,3 +22,8 @@ export const colorMap = {
 export function getGermanType(type: Type) {
   return type.names.find((name) => name.language.name === 'de')?.name ?? ''
 }
+
+export function formatPokemonId(id: number | undefined): string {
+  if (id === undefined) return ''
+  else return id.toString().padStart(3, '0')
+}
